@@ -14,4 +14,6 @@ An Arduino-based multi-sensor simulation built in Tinkercad that integrates ambi
 - Piezo Buzzer  
 
 **Circuit Schematic**
+![Smart Streetlight Circuit Schematic](circuit-schematic-tinkercad.png)
 
+**Embedded Code**
