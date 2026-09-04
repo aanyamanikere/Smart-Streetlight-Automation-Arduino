@@ -17,3 +17,4 @@ An Arduino-based multi-sensor simulation built in Tinkercad that integrates ambi
 ![Smart Streetlight Circuit Schematic](circuit-schematic-tinkercad.png)
 
 **Embedded Code**
+![Smart Streetlight Circuit Schematic](control-logic)
