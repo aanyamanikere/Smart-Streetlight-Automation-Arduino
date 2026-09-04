@@ -1,0 +1,43 @@
+#define LDR_PIN A0
+#define PIR_PIN 7
+#define LED_PIN 6
+#define BUZZER_PIN 3
+
+const int DARKNESS_THRESHOLD = 900; 
+
+// Calibration threshold for darkness
+void setup() {
+  Serial.begin(9600);
+  pinMode(PIR_PIN, INPUT);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+}
+
+void loop() {
+  int ldrValue = analogRead(LDR_PIN);
+  int motionDetected = digitalRead(PIR_PIN);
+
+  Serial.print("LDR: ");
+  Serial.print(ldrValue);
+  Serial.print(" | Motion: ");
+  Serial.println(motionDetected);
+
+  // System logic: Only operate streetlight functions when it is dark
+  if (ldrValue > DARKNESS_THRESHOLD) {
+    if (motionDetected == HIGH) {
+      // Dark + Motion: High brightness + active alert
+      analogWrite(LED_PIN, 255);
+      digitalWrite(BUZZER_PIN, HIGH);
+    } else {
+      // Dark + No Motion: Low energy standby lighting
+      analogWrite(LED_PIN, 50);
+      digitalWrite(BUZZER_PIN, LOW);
+    }
+  } else {
+    // Daytime: System off
+    analogWrite(LED_PIN, 0);
+    digitalWrite(BUZZER_PIN, LOW);
+  }
+
+  delay(200); // Short delay for stability
+}
